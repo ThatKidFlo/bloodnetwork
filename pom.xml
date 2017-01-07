@@ -18,25 +18,32 @@
 		<junit-version>4.12</junit-version>
 		<mysql-connector-version>5.1.40</mysql-connector-version>
 		<eclipselink-version>2.6.1</eclipselink-version>
+		<apache-commons-version>3.5</apache-commons-version>
+		<log4j-version>2.7</log4j-version>
+		<javax-persistence-version>2.1.0</javax-persistence-version>
+		<tomcat-dbcp-version>8.5.9</tomcat-dbcp-version>
+		<spring-orm-version>4.3.2.RELEASE</spring-orm-version>
+		<maven-war-plugin-version>3.0.0</maven-war-plugin-version>
+		<maven-surefire-version>2.19.1</maven-surefire-version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.5</version>
+			<version>${apache-commons-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-web</artifactId>
-			<version>2.7</version>
+			<version>${log4j-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.7</version>
+			<version>${log4j-version}</version>
 		</dependency>
 
 		<dependency>
@@ -48,13 +55,13 @@
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
-			<version>2.1.0</version>
+			<version>${javax-persistence-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-dbcp</artifactId>
-			<version>8.5.9</version>
+			<version>${tomcat-dbcp-version}</version>
 		</dependency>
 
 		<dependency>
@@ -114,7 +121,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>${spring-orm-version}</version>
 		</dependency>
 
 		<dependency>
@@ -151,7 +158,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>${maven-war-plugin-version}</version>
 				<configuration>
 					<webXml>WebContent\WEB-INF\web.xml</webXml>
 				</configuration>
@@ -160,7 +167,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
+				<version>${maven-surefire-version}</version>
 			</plugin>
 		</plugins>
 	</build>
