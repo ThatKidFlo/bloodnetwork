@@ -32,10 +32,9 @@ public class DefaultUserService implements UserService {
 
 	@Override
 	public UserDTO findOne(String email) {
-		final User userEntity = userRepository
+		return userRepository
 				.findOne(email)
+				.map(userConverter::marshall)
 				.orElseThrow(() -> new MissingRequiredEntity("Unable to find user with email:: " + email));
-		
-		return userConverter.marshall(userEntity);
 	}
 }

@@ -32,11 +32,9 @@ public class DefaultOrganizationService implements OrganizationService {
 
 	@Override
 	public OrganizationDTO findOne(Long pk) {
-		final Organization org = organizationRepository
+		return organizationRepository
 				.findOne(pk)
+				.map(organizationConverter::marshall)
 				.orElseThrow(() -> new MissingRequiredEntity("Unable to find organization with id:: " + pk));
-		
-		return organizationConverter.marshall(org);
 	}
-
 }

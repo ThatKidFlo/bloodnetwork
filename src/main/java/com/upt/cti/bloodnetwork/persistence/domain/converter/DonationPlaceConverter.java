@@ -1,6 +1,7 @@
 package com.upt.cti.bloodnetwork.persistence.domain.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.upt.cti.bloodnetwork.persistence.domain.dto.DonationPlaceDTO;
 import com.upt.cti.bloodnetwork.persistence.domain.dto.LatLongDTO;
@@ -9,6 +10,7 @@ import com.upt.cti.bloodnetwork.persistence.domain.entity.DonationPlace;
 import com.upt.cti.bloodnetwork.persistence.domain.entity.LatLong;
 import com.upt.cti.bloodnetwork.persistence.domain.entity.Organization;
 
+@Component("donationPlaceConverter")
 public class DonationPlaceConverter implements EntityConverter<DonationPlace, DonationPlaceDTO>{
 	
 	@Autowired
