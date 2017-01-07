@@ -1,6 +1,7 @@
 package com.upt.cti.bloodnetwork.service.core;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.upt.cti.bloodnetwork.persistence.domain.converter.EntityConverter;
@@ -10,6 +11,7 @@ import com.upt.cti.bloodnetwork.persistence.domain.exception.MissingRequiredEnti
 import com.upt.cti.bloodnetwork.persistence.repository.OrganizationRepository;
 import com.upt.cti.bloodnetwork.service.api.OrganizationService;
 
+@Service("organizationService")
 public class DefaultOrganizationService implements OrganizationService {
 
 	private final OrganizationRepository organizationRepository;
@@ -24,7 +26,7 @@ public class DefaultOrganizationService implements OrganizationService {
 
 	@Override
 	@Transactional
-	public void createUser(OrganizationDTO organizationForm) {
+	public void createOne(OrganizationDTO organizationForm) {
 		organizationRepository.saveOne(organizationConverter.unmarshall(organizationForm));
 	}
 

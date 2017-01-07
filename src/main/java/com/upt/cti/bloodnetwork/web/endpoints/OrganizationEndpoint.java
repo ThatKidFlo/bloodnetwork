@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.upt.cti.bloodnetwork.persistence.domain.dto.UserDTO;
-import com.upt.cti.bloodnetwork.service.api.UserService;
+import com.upt.cti.bloodnetwork.persistence.domain.dto.OrganizationDTO;
+import com.upt.cti.bloodnetwork.service.api.OrganizationService;
 
-@RequestMapping("/user")
 @RestController
-public class UserEndpoint {
-	
-	private final UserService userService;
+@RequestMapping("/organization")
+public class OrganizationEndpoint {
+
+	private final OrganizationService organizationService;
 
 	@Autowired
-	public UserEndpoint(UserService userService) {
-		this.userService = userService;
+	public OrganizationEndpoint(OrganizationService organizationService) {
+		this.organizationService = organizationService;
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 				 value = "/create")
-	public void createUser(@RequestBody UserDTO user) {
-		userService.createOne(user);
+	public void createUser(@RequestBody OrganizationDTO org) {
+		organizationService.createOne(org);
 	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-				value = "/find/{email}")
-	public UserDTO findUser(@PathVariable("email") String email) {
-		return userService.findOne(email);
+				value = "/find/{id}")
+	public OrganizationDTO findUser(@PathVariable("id") long id) {
+		return organizationService.findOne(id);
 	}
 }

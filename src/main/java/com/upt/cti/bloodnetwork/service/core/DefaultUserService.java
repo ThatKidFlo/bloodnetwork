@@ -26,7 +26,7 @@ public class DefaultUserService implements UserService {
 
 	@Override
 	@Transactional
-	public void createUser(UserDTO userForm) {
+	public void createOne(UserDTO userForm) {
 		userRepository.saveOne(userConverter.unmarshall(userForm));
 	}
 

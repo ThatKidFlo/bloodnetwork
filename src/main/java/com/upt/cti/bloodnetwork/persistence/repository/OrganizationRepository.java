@@ -13,7 +13,7 @@ public class OrganizationRepository {
 	private final GenericRepository<Organization> genericRepo;
 
 	@Autowired
-	private OrganizationRepository(GenericRepository<Organization> genericRepo) {
+	public OrganizationRepository(GenericRepository<Organization> genericRepo) {
 		this.genericRepo = genericRepo;
 	}
 
