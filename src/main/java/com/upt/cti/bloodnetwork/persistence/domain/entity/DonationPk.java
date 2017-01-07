@@ -15,7 +15,7 @@ public class DonationPk implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
-	private long userId;
+	private String userId;
 	
 	@Column(nullable = false)
 	private long placeId;
@@ -23,11 +23,11 @@ public class DonationPk implements Serializable {
 	@Column(nullable = false)
 	private Date date;
 
-	public long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

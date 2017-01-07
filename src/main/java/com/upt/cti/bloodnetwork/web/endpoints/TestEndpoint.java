@@ -7,17 +7,7 @@ import java.util.stream.Stream;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-/**
- * 
- *  -create a user
- *	-verify a user
- *	-create donation
- *	-retrieve list of donations for user(email)
- *	-retrieve list blood requrements(blood type)
- * 
- * @author florinbarbuceanu
- *
- */
+
 @RestController
 public class TestEndpoint {
 

@@ -1,5 +1,7 @@
 package com.upt.cti.bloodnetwork.web.endpoints;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,29 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.upt.cti.bloodnetwork.persistence.domain.dto.OrganizationDTO;
-import com.upt.cti.bloodnetwork.service.api.OrganizationService;
+import com.upt.cti.bloodnetwork.persistence.domain.dto.DonationDTO;
+import com.upt.cti.bloodnetwork.service.api.DonationService;
 
 @RestController
-@RequestMapping("/organization")
-public class OrganizationEndpoint {
-
-	private final OrganizationService organizationService;
+@RequestMapping("/donation")
+public class DonationEndpoint {
+	
+	private final DonationService donationService;
 
 	@Autowired
-	public OrganizationEndpoint(OrganizationService organizationService) {
-		this.organizationService = organizationService;
+	public DonationEndpoint(DonationService donationService) {
+		this.donationService = donationService;
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 				 value = "/create")
-	public void createOrganization(@RequestBody OrganizationDTO org) {
-		organizationService.createOne(org);
+	public void createDonation(@RequestBody DonationDTO donation) {
+		donationService.createOne(donation);
 	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-				value = "/find/{id}")
-	public OrganizationDTO findOrganization(@PathVariable("id") long id) {
-		return organizationService.findOne(id);
+				value = "/find/{userEmail}")
+	public List<DonationDTO> findUser(@PathVariable("userEmail") String email) {
+		return donationService.findAllByUserId(email);
 	}
 }

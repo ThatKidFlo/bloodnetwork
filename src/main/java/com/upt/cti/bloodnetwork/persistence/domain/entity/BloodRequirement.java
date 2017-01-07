@@ -5,10 +5,12 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "BloodRequirement")
+@NamedQuery(name = "BloodRequirement.findByBloodType", query = "SELECT b FROM BloodRequirement b WHERE b.pk.bloodType = :bloodType")
 public class BloodRequirement {
 	
 	@EmbeddedId

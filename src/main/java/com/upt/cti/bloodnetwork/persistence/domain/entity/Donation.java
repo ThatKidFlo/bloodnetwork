@@ -5,10 +5,12 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Donation")
+@NamedQuery(name = "Donation.findByUserId", query = "SELECT d FROM Donation d WHERE d.pk.userId = :userId")
 public class Donation {
 	
 	@EmbeddedId

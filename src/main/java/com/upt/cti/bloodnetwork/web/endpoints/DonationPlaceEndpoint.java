@@ -25,13 +25,13 @@ public class DonationPlaceEndpoint {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 				 value = "/create")
-	public void createUser(@RequestBody DonationPlaceDTO org) {
-		donationPlaceService.createOne(org);
+	public void createDonationPlace(@RequestBody DonationPlaceDTO donationPlace) {
+		donationPlaceService.createOne(donationPlace);
 	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 				value = "/find/{id}")
-	public DonationPlaceDTO findUser(@PathVariable("id") long id) {
+	public DonationPlaceDTO findDonationPlace(@PathVariable("id") long id) {
 		return donationPlaceService.findOne(id);
 	}
 }
