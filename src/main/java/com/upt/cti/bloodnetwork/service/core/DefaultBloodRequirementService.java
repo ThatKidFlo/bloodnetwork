@@ -1,6 +1,8 @@
 package com.upt.cti.bloodnetwork.service.core;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.upt.cti.bloodnetwork.persistence.domain.converter.EntityConverter;
 import com.upt.cti.bloodnetwork.persistence.domain.dto.BloodRequirementDTO;
 import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodRequirement;
 import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodRequirementPk;
+import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodType;
 import com.upt.cti.bloodnetwork.persistence.domain.exception.MissingRequiredEntity;
 import com.upt.cti.bloodnetwork.persistence.repository.BloodRequirementRepository;
 import com.upt.cti.bloodnetwork.service.api.BloodRequirementService;
@@ -43,6 +46,15 @@ public class DefaultBloodRequirementService implements BloodRequirementService {
 
 	@Override
 	public List<BloodRequirementDTO> findAllByBloodType(String bloodType) {
-		return null;
+		return bloodRequirementRepository
+				.findAllByBloodType(Enum.valueOf(BloodType.class, bloodType))
+				.stream()
+				.sorted(priorityComparator())
+				.map(bloodRequirementConverter::marshall)
+				.collect(Collectors.toList());
+	}
+
+	private Comparator<? super BloodRequirement> priorityComparator() {
+		return (b1, b2) -> b1.getPriority().compareTo(b2.getPriority());
 	}
 }

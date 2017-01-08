@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DonationPlace")
+@NamedQuery(name = "DonationPlace.findByName", query = "SELECT d FROM DonationPlace d WHERE d.name = :name")
 public class DonationPlace {
 	
 	@Id

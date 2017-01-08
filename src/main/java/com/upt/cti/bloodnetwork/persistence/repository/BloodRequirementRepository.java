@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodRequirement;
 import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodRequirementPk;
+import com.upt.cti.bloodnetwork.persistence.domain.entity.BloodType;
 import com.upt.cti.bloodnetwork.service.util.CollectionUtils;
 import com.upt.cti.bloodnetwork.service.util.Pair;
 
@@ -32,7 +33,7 @@ public class BloodRequirementRepository {
 		return Optional.ofNullable(genericRepo.findOne(BloodRequirement.class, pk));
 	}
 	
-	public List<BloodRequirement> findAllByBloodType(String bloodType) {
+	public List<BloodRequirement> findAllByBloodType(BloodType bloodType) {
 		final TypedQuery<BloodRequirement> query = genericRepo
 				.bindNamedQueryWithParams("BloodRequirement.findByBloodType", 
 						BloodRequirement.class, 
