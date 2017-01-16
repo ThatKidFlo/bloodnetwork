@@ -1,5 +1,6 @@
 package com.upt.cti.bloodnetwork.persistence.repository;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -39,5 +40,9 @@ public class DonationRepository {
 						CollectionUtils.pairsToMap(Pair.of("userId", email)));
 		
 		return Collections.unmodifiableList(query.getResultList());
+	}
+	
+	public Optional<Date> findLatest(String email) {
+		return null;
 	}
 }

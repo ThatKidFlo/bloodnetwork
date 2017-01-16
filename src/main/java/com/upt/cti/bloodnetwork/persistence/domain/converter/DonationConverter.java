@@ -1,5 +1,8 @@
 package com.upt.cti.bloodnetwork.persistence.domain.converter;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import org.springframework.stereotype.Component;
 
 import com.upt.cti.bloodnetwork.persistence.domain.dto.DonationDTO;
@@ -27,10 +30,17 @@ public class DonationConverter implements EntityConverter<Donation, DonationDTO>
 		final Donation donation = new Donation();
 		
 		donation.setPk(pkFrom(entityDTO));
-		donation.setNextDonation(entityDTO.getNextDonation());
+		donation.setNextDonation(computeNextDonationDate(entityDTO)); //TODO:: set this!
 		donation.setQuantity(entityDTO.getQuantity());
 		
 		return donation;
+	}
+
+	private Date computeNextDonationDate(DonationDTO entityDTO) {
+		final Calendar nextDate = Calendar.getInstance();
+		nextDate.setTime(entityDTO.getDate());
+		nextDate.add(Calendar.MONTH, 5);
+		return new Date(nextDate.getTimeInMillis());
 	}
 
 	private DonationPk pkFrom(DonationDTO entityDTO) {

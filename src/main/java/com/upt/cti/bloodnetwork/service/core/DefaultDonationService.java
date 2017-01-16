@@ -1,5 +1,6 @@
 package com.upt.cti.bloodnetwork.service.core;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,5 +50,10 @@ public class DefaultDonationService implements DonationService {
 				.stream()
 				.map(donationConverter::marshall)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Date nextDonationDateFor(String email) {
+		return donationRepository.findLatest(email).orElse(null);
 	}
 }

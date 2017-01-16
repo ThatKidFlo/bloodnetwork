@@ -1,5 +1,6 @@
 package com.upt.cti.bloodnetwork.web.endpoints;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,15 @@ public class DonationEndpoint {
 				value = "/find/{userEmail}")
 	public List<DonationDTO> findUser(@PathVariable("userEmail") String email) {
 		return donationService.findAllByUserId(email);
+	}
+	
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+				value = "/next/{userEmail}")
+	public Date nextDonationDateFor(@PathVariable("userEmail") String userEmail) {
+		return new Date(2017, 1, 17);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new Date().toString());
 	}
 }
