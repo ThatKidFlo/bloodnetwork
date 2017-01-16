@@ -41,10 +41,6 @@ public class DonationEndpoint {
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
 				value = "/next/{userEmail}")
 	public Date nextDonationDateFor(@PathVariable("userEmail") String userEmail) {
-		return new Date(2017, 1, 17);
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(new Date().toString());
+		return donationService.nextDonationDateFor(userEmail);
 	}
 }

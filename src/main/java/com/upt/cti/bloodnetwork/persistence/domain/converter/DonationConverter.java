@@ -30,7 +30,7 @@ public class DonationConverter implements EntityConverter<Donation, DonationDTO>
 		final Donation donation = new Donation();
 		
 		donation.setPk(pkFrom(entityDTO));
-		donation.setNextDonation(computeNextDonationDate(entityDTO)); //TODO:: set this!
+		donation.setNextDonation(computeNextDonationDate(entityDTO));
 		donation.setQuantity(entityDTO.getQuantity());
 		
 		return donation;
@@ -39,7 +39,7 @@ public class DonationConverter implements EntityConverter<Donation, DonationDTO>
 	private Date computeNextDonationDate(DonationDTO entityDTO) {
 		final Calendar nextDate = Calendar.getInstance();
 		nextDate.setTime(entityDTO.getDate());
-		nextDate.add(Calendar.MONTH, 5);
+		nextDate.add(Calendar.MONTH, 2);
 		return new Date(nextDate.getTimeInMillis());
 	}
 

@@ -19,10 +19,13 @@ import com.upt.cti.bloodnetwork.service.util.Pair;
 public class DonationRepository {
 
 	private final GenericRepository<Donation> genericRepo;
+	private final GenericRepository<Date> genericDateRepo;
 
 	@Autowired
-	public DonationRepository(GenericRepository<Donation> genericRepo) {
+	public DonationRepository(GenericRepository<Donation> genericRepo,
+							  GenericRepository<Date> genericDateRepo) {
 		this.genericRepo = genericRepo;
+		this.genericDateRepo = genericDateRepo;
 	}
 	
 	public void saveOne(Donation entity) {
@@ -43,6 +46,13 @@ public class DonationRepository {
 	}
 	
 	public Optional<Date> findLatest(String email) {
-		return null;
+		final TypedQuery<Date> query = genericDateRepo
+				.bindNamedQueryWithParams("Donation.findNextDateByUserId", 
+						Date.class, 
+						CollectionUtils.pairsToMap(Pair.of("userId", email)));
+		
+		final List<Date> result = query.getResultList();
+		
+		return result.isEmpty() ? Optional.empty() : Optional.ofNullable(result.get(0));
 	}
 }

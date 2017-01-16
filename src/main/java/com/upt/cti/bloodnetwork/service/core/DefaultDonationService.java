@@ -54,6 +54,8 @@ public class DefaultDonationService implements DonationService {
 
 	@Override
 	public Date nextDonationDateFor(String email) {
-		return donationRepository.findLatest(email).orElse(null);
+		return donationRepository
+				.findLatest(email)
+				.orElse(new java.sql.Date(System.currentTimeMillis()));
 	}
 }
